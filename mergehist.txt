@@ -1,0 +1,23 @@
+# HEADでブランチを作成しmasterまで戻す
+git checkout -b work1
+git rebase master
+
+# ファイルを追加
+vim newfile2.txt
+git add .\newfile2.txt
+git commit -m "新しいファイル2の追加"
+vim newfile2.txt
+git commit -m "更新"
+
+# masterに戻って新しいブランチを作成
+git checkout master
+git checkout -b work2
+git log --graph --oneline
+
+# work1とマージ
+git merge work1 --no-ff
+
+# work1の指す先をwork2と同一にする
+git checkout work1
+git rebase work2
+git log --graph --oneline
